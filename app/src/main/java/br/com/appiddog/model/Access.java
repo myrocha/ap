@@ -3,6 +3,9 @@ package br.com.appiddog.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * template class to login.
+ */
 public class Access {
     @SerializedName("email")
     @Expose

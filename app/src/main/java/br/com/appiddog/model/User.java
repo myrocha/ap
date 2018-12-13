@@ -2,6 +2,9 @@ package br.com.appiddog.model;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * class return webservice after login.
+ */
 public class User {
 
     @SerializedName("email")
