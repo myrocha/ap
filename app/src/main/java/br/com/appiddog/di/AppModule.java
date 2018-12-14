@@ -1,5 +1,6 @@
 package br.com.appiddog.di;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -10,6 +11,7 @@ import javax.inject.Singleton;
 
 import br.com.appiddog.constants.Constants;
 import br.com.appiddog.service.IService;
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -25,7 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public abstract class AppModule {
 
 
-
+    @Binds
+    abstract Context bindContext(Application application);
 
 
     /**

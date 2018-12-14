@@ -4,61 +4,53 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import javax.inject.Inject;
 
-import br.com.appiddog.model.Access;
-import br.com.appiddog.model.User;
+import br.com.appiddog.model.ListDog;
 import br.com.appiddog.model.persistence.SharedPreference;
 import br.com.appiddog.service.IService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * class responsible for accessing the web service.
- */
-
-public class LoginRepository {
+public class DogRepository {
 
     public IService mIservice;
-    public SharedPreference sharedPreference;
+    public SharedPreference sharedPreferences;
     public Context mContext;
 
     @Inject
-    public LoginRepository(final  IService service, final Application application, final SharedPreference
-            preference){
+    public DogRepository(final  IService service, final SharedPreference preference, final Application application){
         this.mIservice = service;
+        this.sharedPreferences = preference;
         this.mContext = application;
-        this.sharedPreference = preference;
 
     }
 
 
     /**
      * method responsible for logging in to the server.
-     * @param access
+     * @param category
      * @return
      */
-    public  LiveData<User> onLogin(final Access access) {
-        final MutableLiveData<User> data = new MutableLiveData<>();
+    public LiveData<ListDog> getListDog(final String category) {
+        final MutableLiveData<ListDog> data = new MutableLiveData<>();
 
-
-        final Call<JsonObject> call = this.mIservice.login("application/json", access);
+        final String token = sharedPreferences.getIsToken(mContext);
+        final Call<JsonObject> call = this.mIservice.getListDog(token, category);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(final Call<JsonObject> call, final Response<JsonObject> response) {
                 Gson gson = new Gson();
-                User user = gson.fromJson(response.body(), User.class);
-                saveToken(user.getUser().getToken());
-                data.setValue(user);
-                Log.i("###", "userrr: " + user.getUser());
+                ListDog listDog = gson.fromJson(response.body(), ListDog.class);
+                data.setValue(listDog);
+                //  Log.i("###", "userrr: " + user.getUser());
 
-                }
+            }
 
 
 
@@ -70,10 +62,5 @@ public class LoginRepository {
 
         return  data;
     }
-
-    public void saveToken(final String token){
-        sharedPreference.isSaveTokenUser(mContext, token);
-    }
-
 
 }

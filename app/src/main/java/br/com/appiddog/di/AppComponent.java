@@ -17,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
      //  AppServiceModule.class,
         ActivityBindingsModule.class,
+        FragmentBindingsModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<App> /*extends AndroidInjector<DaggerApplication>*/ {
 
