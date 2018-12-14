@@ -25,8 +25,6 @@ public class DogViewModel extends ViewModel {
      * @return
      */
     public LiveData<ListDog> getListDog(final String category) {
-        /*Access access = new Access();
-        access.setEmail(email.getValue());*/
         return dogRepository.getListDog(category);
 
 

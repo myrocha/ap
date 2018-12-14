@@ -75,5 +75,10 @@ public class LoginRepository {
         sharedPreference.isSaveTokenUser(mContext, token);
     }
 
+    public String getToken(){
+        return sharedPreference.getIsToken(mContext);
+    }
+
+
 
 }

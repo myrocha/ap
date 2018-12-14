@@ -4,7 +4,8 @@ package br.com.appiddog.util;
  * Class to open activities from any part of the code.
  */
 public enum IntentActions {
-    MAIN_ACTIVITY("br.com.appiddog.view.activity.MAIN_ACTIVTY");
+    MAIN_ACTIVITY("br.com.appiddog.view.activity.MAIN_ACTIVTY"),
+    DOG_ACTIVITY("br.com.appiddog.view.activity.DOG_ACTIVITY");
 
 
 

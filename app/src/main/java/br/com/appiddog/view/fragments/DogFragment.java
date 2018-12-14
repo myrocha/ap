@@ -83,16 +83,22 @@ public class DogFragment extends Fragment {
     }
 
     public void getListDog() {
-        dogViewModel.showLoading();
+       // dogViewModel.showLoading();
+      //  binding.progressbarLogin.setVisibility(View.VISIBLE);
         dogViewModel.getListDog(mCategory).observe(this, response -> {
             // loginViewModel.hideLoading();
-            final RecyclerView recyclerView = binding.recyclerResource;
-            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-            ListDogAdapter adapter = new ListDogAdapter(getContext());
-            recyclerView.setAdapter(adapter);
-            adapter.setList(response.getList());
-            dogViewModel.hideLoading();
-         //   OpenScreenUtility.openScreen(this, IntentActions.MAIN_ACTIVITY.getAction(), null, false);
+            if (response != null) {
+                final RecyclerView recyclerView = binding.recyclerResource;
+                recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+                ListDogAdapter adapter = new ListDogAdapter(getContext());
+                recyclerView.setAdapter(adapter);
+                adapter.setList(response.getList()) ;
+            } else {
+                binding.progressbarLogin.setVisibility(View.GONE);
+            }
+
+           // dogViewModel.hideLoading();
+         //   OpenScreenUtil.openScreen(this, IntentActions.MAIN_ACTIVITY.getAction(), null, false);
 
         });
 
