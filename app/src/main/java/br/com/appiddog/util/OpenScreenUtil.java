@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class OpenScreenUtility {
+public class OpenScreenUtil {
 
     public static void openScreen(final Context context, final String action, final Bundle bundle, final boolean clearTask) {
         final Intent intent = new Intent(action);

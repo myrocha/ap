@@ -7,4 +7,5 @@
     <string name="hound">Hound</string>
     <string name="pug">Pug</string>
     <string name="labrador">Labrador</string>
+    <string name="empty_field">Campo em Branco</string>
 </resources>

@@ -3,10 +3,13 @@ package br.com.appiddog.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.content.Context;
 import android.databinding.ObservableBoolean;
 
 import javax.inject.Inject;
 
+import br.com.appiddog.R;
+import br.com.appiddog.databinding.LoginActivityBinding;
 import br.com.appiddog.model.Access;
 import br.com.appiddog.model.User;
 import br.com.appiddog.repository.LoginRepository;
@@ -17,6 +20,7 @@ import br.com.appiddog.repository.LoginRepository;
 public class LoginViewModel extends ViewModel {
 
     public final MutableLiveData<String> email = new MutableLiveData<>();
+    public final MutableLiveData<String> emailFail = new MutableLiveData<>();
 
     public final ObservableBoolean loading = new ObservableBoolean();
 
@@ -38,6 +42,23 @@ public class LoginViewModel extends ViewModel {
 
 
     }
+
+    public boolean checkLoginFields(final LoginActivityBinding binding, final Context context) {
+         boolean field = true;
+        if (email.getValue() == null || email.getValue().isEmpty()) {
+            binding.txtEmail.setError(context.getString(R.string.empty_field));
+
+            field = false;
+        }
+
+
+        return field;
+    }
+
+    public String getToken(){
+        return loginRepository.getToken();
+    }
+
 
     public void showLoading() {
         loading.set(true);
