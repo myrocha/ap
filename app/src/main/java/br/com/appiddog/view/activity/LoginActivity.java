@@ -1,4 +1,4 @@
-package br.com.appiddog.view;
+package br.com.appiddog.view.activity;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;

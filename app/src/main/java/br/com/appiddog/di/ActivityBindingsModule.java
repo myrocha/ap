@@ -1,7 +1,7 @@
 package br.com.appiddog.di;
 
 
-import br.com.appiddog.view.LoginActivity;
+import br.com.appiddog.view.activity.LoginActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
